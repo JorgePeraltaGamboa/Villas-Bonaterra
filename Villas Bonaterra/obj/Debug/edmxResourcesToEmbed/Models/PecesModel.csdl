@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PecesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UsuariosRoles" Relationship="Self.FK_UsuariosRoles_Roles" FromRole="Roles" ToRole="UsuariosRoles" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UsuariosRoles" Relationship="Self.FK_UsuariosRoles_Usuario" FromRole="Usuario" ToRole="UsuariosRoles" />
+  </EntityType>
+  <EntityType Name="UsuariosRoles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idusuario" Type="Int32" Nullable="false" />
+    <Property Name="idrole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_UsuariosRoles_Roles" FromRole="UsuariosRoles" ToRole="Roles" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_UsuariosRoles_Usuario" FromRole="UsuariosRoles" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Pez">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="nombre" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_UsuariosRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UsuariosRoles" Type="Self.UsuariosRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UsuariosRoles">
+        <PropertyRef Name="idrole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuariosRoles_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuariosRoles" Type="Self.UsuariosRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UsuariosRoles">
+        <PropertyRef Name="idusuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PecesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <EntitySet Name="UsuariosRoles" EntityType="Self.UsuariosRoles" />
+    <EntitySet Name="Pez" EntityType="Self.Pez" />
+    <AssociationSet Name="FK_UsuariosRoles_Roles" Association="Self.FK_UsuariosRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsuariosRoles" EntitySet="UsuariosRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuariosRoles_Usuario" Association="Self.FK_UsuariosRoles_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuariosRoles" EntitySet="UsuariosRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

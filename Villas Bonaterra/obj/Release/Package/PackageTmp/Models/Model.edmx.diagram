@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8c0cda2846154f8198f6b078ea7c50c1" Name="Diagram1">
+        <EntityTypeShape EntityType="Villas_BonaterraModel.Accesos" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.Asuntos" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.Bancos" Width="1.5" PointX="5.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.Calles" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.Domicilios" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.RecoveryPassword" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.Roles" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.Usuario" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.UsuariosRoles" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Villas_BonaterraModel.Visitantes" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <AssociationConnector Association="Villas_BonaterraModel.FK_Accesos_Asuntos" ManuallyRouted="false" />
+        <AssociationConnector Association="Villas_BonaterraModel.FK_Accesos_Domicilio" ManuallyRouted="false" />
+        <AssociationConnector Association="Villas_BonaterraModel.FK_Accesos_Visitantes" ManuallyRouted="false" />
+        <AssociationConnector Association="Villas_BonaterraModel.FK_Domicilios_Calles" ManuallyRouted="false" />
+        <AssociationConnector Association="Villas_BonaterraModel.FK_Domicilios_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="Villas_BonaterraModel.FK_RecoveryPassword_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Villas_BonaterraModel.FK_UsuariosRoles_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="Villas_BonaterraModel.FK_UsuariosRoles_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

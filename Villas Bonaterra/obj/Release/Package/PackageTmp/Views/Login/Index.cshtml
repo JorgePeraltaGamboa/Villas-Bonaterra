@@ -1,0 +1,50 @@
+﻿@model Seguros_Inbursa.Models.Usuario
+@using System.Web.Optimization
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Inicio de sesion</title>
+    @Styles.Render("~/Assets/css")
+</head>
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header logo"></div>
+            <div class="card-body">
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "LoginForm" }))
+    {
+            <div class="form-group">
+                <label for="InputUser">Correos *</label>
+                @Html.TextBoxFor(o => o.login, new { @class = "form-control", placeholder = "Ingrese su nombre de usuario", id = "login", onFocus = " HideError()" })
+                @Html.ValidationMessageFor(o => o.login)
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Contraseña *</label>
+                @Html.PasswordFor(o => o.password, new { @class = "form-control", placeholder = "Ingrese su contraseña", id = "password", onkeypress = "LoginForm(event)" })
+                @Html.ValidationMessageFor(o => o.password)
+            </div>
+
+            <input value="Ingresar" onclick="LoginForm(event)" class="btn btn-primary btn-block" />
+            
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+}
+                <div class="text-center">
+                    <a class="d-block small mt-3" href="@Url.Action("Register","Login")">Crear cuenta</a>
+                    <a class="d-block small" href="@Url.Action("Recovery","Login")">He olvidado mi contraseña</a>
+                </div>
+            </div>
+            </div>
+    </div>
+    <div class="modalLoading"><!-- Place at bottom of page --></div>
+</body>
+@Scripts.Render("~/Assets/js")
+@Scripts.Render("~/Assets/Login")
+</html>

@@ -1,0 +1,45 @@
+﻿@using System.Web.Optimization
+@{
+    ViewBag.Title = "Recuperar cuenta";
+}
+<!DOCTYPE html>
+<html lang="es-mx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Assets/css")
+</head>
+
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header logo"></div>
+            <div class="card-body">
+                <div class="text-center mt-4 mb-5">
+                    <h4>Olvidaste tu contraseña?</h4>
+                    <p>Introduce tu correo electronico, recibiras un correo con las instrucciones para recuperar tu contraseña.</p>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="email" id="email" type="email" aria-describedby="emailHelp" onfocus="HideError()" placeholder="Correo electronico">
+                </div>
+                <div class="alert alert-danger" id="error" style="display:none;">
+                    <strong>Error!</strong> <span id="message"></span>
+                </div>
+                <a class="btn btn-primary btn-block" onclick="RecoveryPassword()">Recuperar Contraseña</a>
+                <div class="text-center">
+                    <a class="d-block small mt-3" href="@Url.Action("Register","Login")">Registrarme</a>
+                    <a class="d-block small" href="@Url.Action("Index","Login")">Iniciar Sesion</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalLoading"></div>
+</body>
+@Scripts.Render("~/Assets/js")
+@Scripts.Render("~/Assets/Login")
+</html>

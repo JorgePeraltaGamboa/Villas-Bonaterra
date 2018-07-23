@@ -1,0 +1,9 @@
+﻿body {
+    background-color: #dedede !important;
+    background-image: url("../images/Background.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-attachment: fixed !important;
+    height: 100% !important;
+}

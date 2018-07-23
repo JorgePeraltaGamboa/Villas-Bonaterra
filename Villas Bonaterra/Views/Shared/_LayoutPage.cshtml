@@ -1,0 +1,128 @@
+﻿@using System.Web.Optimization;
+
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="panel de admisnitracion de villas bonaterra">
+    <meta name="author" content="sistemasags">
+
+    @Styles.Render("~/Assets/css")
+
+    <!-- DataStyle CSS View -->
+    @RenderSection("css", required: false)
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <a class="navbar-brand" href="index.html"><img src="~/Content/images/logoMain.png"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="min-width:60px;">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tablero">
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">
+                        <i class="fa fa-fw fa-dashboard fa-2x"></i>
+                        <span class="nav-link-text">Tablero</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Accesos">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+                        <i class="fa fa-car fa-2x"></i>
+                        <span class="nav-link-text">Accesos</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse @(ViewBag.Current == "Access" ? "show" : "") " id="collapseMulti">
+                        <li>
+                            <a class="nav-link" href="@Url.Action("Active", "Access")">
+                                <i class="fa fa-door-open fa-2x"></i>
+                                <span class="nav-link-text">Accesos Activos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="@Url.Action("Index", "Access")">
+                                <i class="fa fa-calendar-check-o fa-2x"></i>
+                                <span class="nav-link-text">Historial de Accesos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Calles">
+                    <a class="nav-link" href="@Url.Action("Index", "Street")">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-link-text">Calles</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Visitantes">
+                    <a class="nav-link" href="@Url.Action("Index", "Visitor")">
+                        <i class="fa fa-address-card fa-2x"></i>
+                        <span class="nav-link-text">Visitantes</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler" style="min-width:60px;">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#LogoffModal">
+                        <i class="fa fa-fw fa-sign-out"></i>Salir
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            @RenderBody()
+            <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
+            <div style="height: 1000px;"></div>
+        </div>
+        <!-- /.container-fluid-->
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © SistemasAgs 2018</small>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="LogoffModal" tabindex="-1" role="dialog" aria-labelledby="LogoffModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="LogoffModalLabel">Deseas salir?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Click en "Salir" para terminar tu sesion.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-primary" href="@Url.Action("Logoff", "Login")">Salir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modalLoading"><!-- Place at bottom of page --></div>
+    @Scripts.Render("~/Assets/js")
+
+    <!-- JavaScript View -->
+    @RenderSection("js", required: false)
+
+</body>
+</html>

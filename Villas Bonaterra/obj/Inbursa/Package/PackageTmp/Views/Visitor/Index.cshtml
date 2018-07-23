@@ -1,0 +1,88 @@
+﻿@model IEnumerable<VillasBonaterra.Models.Visitantes>
+
+@{
+    ViewBag.Title = "Visitantes";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index", "Home")">Visitantes</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+<hr>
+<h1>@ViewBag.Title</h1>
+<div class="card mb-3">
+    <div class="card-header">
+        <a class="btn btn-primary" href="/Visitor/Add">Nuevo Visitante</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableVisitor" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>PIN</th>
+                        <th>Nombre</th>
+                        <th class="text-center">Foto</th>
+                        <th class="text-center">Verificado</th>
+                        <th class="text-center">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderBy(s=>s.nombre).ThenBy(s=>s.apellido1).ThenBy(s=>s.apellido2))
+                    {
+                    <tr>
+                        <td>
+                            @String.Format(item.pin)
+                        </td>
+                        <td>
+                            @String.Format(item.nombre + " " + item.apellido1 + " " + item.apellido2)
+                        </td>
+                        <td class="text-center">
+                            <a class="nav-link" data-toggle="modal" data-target="#CardModal" data-url="@String.Format("../Content/Photos/min" + item.foto)" style="cursor:zoom-in">
+                                <i class="fa fa-fw fa-credit-card"></i>
+                            </a>
+                        </td>
+                        <td style="text-align:center;">
+                            @{ 
+                                if (item.verificado) {
+                                    <i class="fa fa-fw fa-check"></i>
+                                }
+                                else {
+                                }
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Update", "Visitor", new { id = @item.id_visitante })" visitorid="@item.id_visitante">
+                                <i class="fa fa-fw fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted"></div>
+</div>
+<!-- Card Modal-->
+<div class="modal fade" id="CardModal" tabindex="-1" role="dialog" aria-labelledby="CardModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="LogoffModalLabel"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body"><img id="photo" src="" style="width: 100%; height: auto;"></div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+    @Scripts.Render("~/Assets/Visitor")
+}

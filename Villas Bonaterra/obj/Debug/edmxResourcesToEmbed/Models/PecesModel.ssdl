@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PecesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Peces.dbo.Pez' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Pez">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="nombre" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="nombre" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="apellidos" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuariosRoles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idusuario" Type="int" Nullable="false" />
+    <Property Name="idrole" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_UsuariosRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UsuariosRoles" Type="Self.UsuariosRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UsuariosRoles">
+        <PropertyRef Name="idrole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuariosRoles_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuariosRoles" Type="Self.UsuariosRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UsuariosRoles">
+        <PropertyRef Name="idusuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PecesModelStoreContainer">
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsuariosRoles" EntityType="Self.UsuariosRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pez" EntityType="Self.Pez" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Pez].[id] AS [id], 
+    [Pez].[nombre] AS [nombre]
+    FROM [dbo].[Pez] AS [Pez]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_UsuariosRoles_Roles" Association="Self.FK_UsuariosRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsuariosRoles" EntitySet="UsuariosRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuariosRoles_Usuario" Association="Self.FK_UsuariosRoles_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuariosRoles" EntitySet="UsuariosRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

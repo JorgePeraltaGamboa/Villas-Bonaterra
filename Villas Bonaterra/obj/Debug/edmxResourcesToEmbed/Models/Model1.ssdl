@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PecesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Peces.dbo.Pez' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Pez">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="nombre" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Peces.dbo.Usuario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="apellidos" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="login" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="nombre" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="apellidos" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PecesModelStoreContainer">
+    <EntitySet Name="Pez" EntityType="Self.Pez" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Pez].[id] AS [id], 
+    [Pez].[nombre] AS [nombre]
+    FROM [dbo].[Pez] AS [Pez]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Usuario].[id] AS [id], 
+    [Usuario].[login] AS [login], 
+    [Usuario].[password] AS [password], 
+    [Usuario].[nombre] AS [nombre], 
+    [Usuario].[apellidos] AS [apellidos]
+    FROM [dbo].[Usuario] AS [Usuario]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

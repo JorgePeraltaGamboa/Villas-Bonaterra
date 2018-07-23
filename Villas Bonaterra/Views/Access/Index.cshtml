@@ -1,0 +1,95 @@
+﻿@model IEnumerable<VillasBonaterra.ViewModels.AccessViewModel>
+
+
+@{
+    ViewBag.Title = "Historial de Accesos";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<title>@ViewBag.Title</title>
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index", "Home")">Accesos</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+<hr>
+<h1>@ViewBag.Title</h1>
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Calle</th>
+                        <th>No</th>
+                        <th>Visitante</th>
+                        <th>Asunto</th>
+                        <th>Placa</th>
+                        <th>Identificacion</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @String.Format("{0:dd/MM/yyyy}", item.Date)
+                        </td>
+                        <td>
+                            @String.Format("{0:T}", item.Date)
+                        </td>
+                        <td>
+                            @String.Format("{0:T}", item.DateOut)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Street)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.no)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Visitor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Plate)
+                        </td>
+                        <td class="text-center">
+                            <a class="nav-link" data-toggle="modal" data-target="#CardModal" data-url="../Content/Photos/@item.Idenfitication" style="cursor:zoom-in">
+                                <i class="fa fa-fw fa-credit-card"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Card Modal-->
+<div class="modal fade" id="CardModal" tabindex="-1" role="dialog" aria-labelledby="CardModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="LogoffModalLabel"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body"><img id="photo" src="" style="width: 100%; height: auto;"></div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+    @Scripts.Render("~/Assets/Visitor")
+}

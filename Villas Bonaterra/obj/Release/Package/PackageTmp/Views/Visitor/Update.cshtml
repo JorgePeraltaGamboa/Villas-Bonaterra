@@ -1,0 +1,63 @@
+﻿@model Seguros_Inbursa.Models.Visitantes
+
+@{
+    ViewBag.Title = "Editar de Visitante";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<title>@ViewBag.Title</title>
+
+@section css{
+    @Styles.Render("~/Assets/VisitorCSS")
+}
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index", "Visitor")">Visitantes</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+<hr>
+<h1>@ViewBag.Title</h1>
+
+<form id="VisitorUpdateForm" name="VisitorEditForm" enctype="multipart/form-data">
+    <div class="form-group">
+        <input value="@Model.id_visitante" type="hidden" id="Id" required>
+        <label for="InputName">Nombre</label>
+        <input value="@Model.nombre" type="text" class="form-control" id="Name" aria-describedby="Name" placeholder="Escriba aqui el nombre" required>
+    </div>
+    <div class="form-group">
+        <label for="MidleName">Primer Apellido</label>
+        <input value="@Model.apellido1" type="text" class="form-control" id="MidleName" placeholder="Escriba aqui el primer apellido" required>
+    </div>
+    <div class="form-group">
+        <label for="LastName">Segunto Apellido</label>
+        <input value="@Model.apellido2" type="text" class="form-control" id="LastName" placeholder="Escriba aqui el segunto apellido" required>
+    </div>
+    <div class="form-group">
+        <label for="role">Fecha Nacimiento</label>
+        <div class='input-group date' id='datepicker'>
+            <input value="@Model.nacimiento.ToString("dd/MM/yyyy")" type='text' class="form-control" id="BirthDate" name="BirthDate" required>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="LastName">Identificacion</label>
+        <img id="preview" src="/Photos/@Model.foto" alt="Foto" height="auto" width="370px">
+    </div>
+    <div class="form-group">
+        <label for="LastName">Foto</label>
+        <input type="file" class="form-control" id="Photo" name="Photo" placeholder="Cambiar la foto" onchange="readURL(this);">
+    </div>
+    <div class="alert alert-danger" id="error" style="display:none;">
+        <strong id="typemessage"></strong> <span id="message"></span>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+</form>
+
+@section js{
+    @Scripts.Render("~/Assets/VisitorAdd")
+}

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Villas_BonaterraModelStoreContainer" CdmEntityContainer="Villas_BonaterraEntities">
+    <EntitySetMapping Name="Accesos">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.Accesos">
+        <MappingFragment StoreEntitySet="Accesos">
+          <ScalarProperty Name="id_acceso" ColumnName="id_acceso" />
+          <ScalarProperty Name="id_asunto" ColumnName="id_asunto" />
+          <ScalarProperty Name="id_visitante" ColumnName="id_visitante" />
+          <ScalarProperty Name="id_domicilio" ColumnName="id_domicilio" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="placa" ColumnName="placa" />
+          <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+          <ScalarProperty Name="cono" ColumnName="cono" />
+          <ScalarProperty Name="fecha_salida" ColumnName="fecha_salida" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Asuntos">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.Asuntos">
+        <MappingFragment StoreEntitySet="Asuntos">
+          <ScalarProperty Name="id_asunto" ColumnName="id_asunto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bancos">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.Bancos">
+        <MappingFragment StoreEntitySet="Bancos">
+          <ScalarProperty Name="id_banco" ColumnName="id_banco" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="saldo" ColumnName="saldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Calles">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.Calles">
+        <MappingFragment StoreEntitySet="Calles">
+          <ScalarProperty Name="id_calle" ColumnName="id_calle" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Domicilios">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.Domicilios">
+        <MappingFragment StoreEntitySet="Domicilios">
+          <ScalarProperty Name="id_domicilio" ColumnName="id_domicilio" />
+          <ScalarProperty Name="id_calle" ColumnName="id_calle" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="no_casa" ColumnName="no_casa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecoveryPassword">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.RecoveryPassword">
+        <MappingFragment StoreEntitySet="RecoveryPassword">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Used" ColumnName="Used" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TarjetasAcceso">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.TarjetasAcceso">
+        <MappingFragment StoreEntitySet="TarjetasAcceso">
+          <ScalarProperty Name="IdCard" ColumnName="IdCard" />
+          <ScalarProperty Name="IdDomicilio" ColumnName="IdDomicilio" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Activa" ColumnName="Activa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+          <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="confirm_email" ColumnName="confirm_email" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuariosRoles">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.UsuariosRoles">
+        <MappingFragment StoreEntitySet="UsuariosRoles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VerificacionVisitantes">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.VerificacionVisitantes">
+        <MappingFragment StoreEntitySet="VerificacionVisitantes">
+          <ScalarProperty Name="IdVerificacion" ColumnName="IdVerificacion" />
+          <ScalarProperty Name="IdVisitante" ColumnName="IdVisitante" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visitantes">
+      <EntityTypeMapping TypeName="Villas_BonaterraModel.Visitantes">
+        <MappingFragment StoreEntitySet="Visitantes">
+          <ScalarProperty Name="id_visitante" ColumnName="id_visitante" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+          <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+          <ScalarProperty Name="nacimiento" ColumnName="nacimiento" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="pin" ColumnName="pin" />
+          <ScalarProperty Name="verificado" ColumnName="verificado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

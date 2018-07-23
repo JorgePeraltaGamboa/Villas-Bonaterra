@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Villas_BonaterraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accesos">
+    <Key>
+      <PropertyRef Name="id_acceso" />
+    </Key>
+    <Property Name="id_acceso" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_asunto" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_visitante" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_domicilio" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="placa" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="identificacion" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="cono" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="fecha_salida" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Asuntos">
+    <Key>
+      <PropertyRef Name="id_asunto" />
+    </Key>
+    <Property Name="id_asunto" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bancos">
+    <Key>
+      <PropertyRef Name="id_banco" />
+    </Key>
+    <Property Name="id_banco" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="saldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Calles">
+    <Key>
+      <PropertyRef Name="id_calle" />
+    </Key>
+    <Property Name="id_calle" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Domicilios">
+    <Key>
+      <PropertyRef Name="id_domicilio" />
+    </Key>
+    <Property Name="id_domicilio" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_calle" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_usuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="no_casa" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecoveryPassword">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdUser" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Code" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Used" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nombre" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TarjetasAcceso">
+    <Key>
+      <PropertyRef Name="IdCard" />
+    </Key>
+    <Property Name="IdCard" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdDomicilio" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Activa" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="login" Type="nvarchar" MaxLength="100" />
+    <Property Name="password" Type="nvarchar" MaxLength="100" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="apellido1" Type="nvarchar" MaxLength="100" />
+    <Property Name="apellido2" Type="varchar" MaxLength="100" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="confirm_email" Type="bit" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="UsuariosRoles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdUsuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdRole" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VerificacionVisitantes">
+    <Key>
+      <PropertyRef Name="IdVerificacion" />
+    </Key>
+    <Property Name="IdVerificacion" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdVisitante" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdUsuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Visitantes">
+    <Key>
+      <PropertyRef Name="id_visitante" />
+    </Key>
+    <Property Name="id_visitante" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="apellido1" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="apellido2" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nacimiento" Type="datetime" Nullable="false" />
+    <Property Name="foto" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="pin" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="verificado" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Accesos_Asuntos">
+    <End Role="Asuntos" Type="Self.Asuntos" Multiplicity="1" />
+    <End Role="Accesos" Type="Self.Accesos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Asuntos">
+        <PropertyRef Name="id_asunto" />
+      </Principal>
+      <Dependent Role="Accesos">
+        <PropertyRef Name="id_asunto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accesos_Domicilio">
+    <End Role="Domicilios" Type="Self.Domicilios" Multiplicity="1" />
+    <End Role="Accesos" Type="Self.Accesos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Domicilios">
+        <PropertyRef Name="id_domicilio" />
+      </Principal>
+      <Dependent Role="Accesos">
+        <PropertyRef Name="id_domicilio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accesos_Visitantes">
+    <End Role="Visitantes" Type="Self.Visitantes" Multiplicity="1" />
+    <End Role="Accesos" Type="Self.Accesos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visitantes">
+        <PropertyRef Name="id_visitante" />
+      </Principal>
+      <Dependent Role="Accesos">
+        <PropertyRef Name="id_visitante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Domicilios_Calles">
+    <End Role="Calles" Type="Self.Calles" Multiplicity="1" />
+    <End Role="Domicilios" Type="Self.Domicilios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Calles">
+        <PropertyRef Name="id_calle" />
+      </Principal>
+      <Dependent Role="Domicilios">
+        <PropertyRef Name="id_calle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Domicilios_Usuarios">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Domicilios" Type="Self.Domicilios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Domicilios">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecoveryPassword_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="RecoveryPassword" Type="Self.RecoveryPassword" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RecoveryPassword">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TarjetasAcceso_Domicilios">
+    <End Role="Domicilios" Type="Self.Domicilios" Multiplicity="1" />
+    <End Role="TarjetasAcceso" Type="Self.TarjetasAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Domicilios">
+        <PropertyRef Name="id_domicilio" />
+      </Principal>
+      <Dependent Role="TarjetasAcceso">
+        <PropertyRef Name="IdDomicilio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuariosRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UsuariosRoles" Type="Self.UsuariosRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UsuariosRoles">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuariosRoles_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="UsuariosRoles" Type="Self.UsuariosRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UsuariosRoles">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VerificacionVisitantes_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="VerificacionVisitantes" Type="Self.VerificacionVisitantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VerificacionVisitantes">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VerificacionVisitantes_Visitantes">
+    <End Role="Visitantes" Type="Self.Visitantes" Multiplicity="1" />
+    <End Role="VerificacionVisitantes" Type="Self.VerificacionVisitantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visitantes">
+        <PropertyRef Name="id_visitante" />
+      </Principal>
+      <Dependent Role="VerificacionVisitantes">
+        <PropertyRef Name="IdVisitante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Villas_BonaterraModelStoreContainer">
+    <EntitySet Name="Accesos" EntityType="Self.Accesos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Asuntos" EntityType="Self.Asuntos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bancos" EntityType="Self.Bancos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Calles" EntityType="Self.Calles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Domicilios" EntityType="Self.Domicilios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecoveryPassword" EntityType="Self.RecoveryPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TarjetasAcceso" EntityType="Self.TarjetasAcceso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsuariosRoles" EntityType="Self.UsuariosRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VerificacionVisitantes" EntityType="Self.VerificacionVisitantes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Visitantes" EntityType="Self.Visitantes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Accesos_Asuntos" Association="Self.FK_Accesos_Asuntos">
+      <End Role="Asuntos" EntitySet="Asuntos" />
+      <End Role="Accesos" EntitySet="Accesos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accesos_Domicilio" Association="Self.FK_Accesos_Domicilio">
+      <End Role="Domicilios" EntitySet="Domicilios" />
+      <End Role="Accesos" EntitySet="Accesos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accesos_Visitantes" Association="Self.FK_Accesos_Visitantes">
+      <End Role="Visitantes" EntitySet="Visitantes" />
+      <End Role="Accesos" EntitySet="Accesos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Domicilios_Calles" Association="Self.FK_Domicilios_Calles">
+      <End Role="Calles" EntitySet="Calles" />
+      <End Role="Domicilios" EntitySet="Domicilios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Domicilios_Usuarios" Association="Self.FK_Domicilios_Usuarios">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Domicilios" EntitySet="Domicilios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecoveryPassword_Usuario" Association="Self.FK_RecoveryPassword_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="RecoveryPassword" EntitySet="RecoveryPassword" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TarjetasAcceso_Domicilios" Association="Self.FK_TarjetasAcceso_Domicilios">
+      <End Role="Domicilios" EntitySet="Domicilios" />
+      <End Role="TarjetasAcceso" EntitySet="TarjetasAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuariosRoles_Roles" Association="Self.FK_UsuariosRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsuariosRoles" EntitySet="UsuariosRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuariosRoles_Usuario" Association="Self.FK_UsuariosRoles_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuariosRoles" EntitySet="UsuariosRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VerificacionVisitantes_Usuario" Association="Self.FK_VerificacionVisitantes_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="VerificacionVisitantes" EntitySet="VerificacionVisitantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VerificacionVisitantes_Visitantes" Association="Self.FK_VerificacionVisitantes_Visitantes">
+      <End Role="Visitantes" EntitySet="Visitantes" />
+      <End Role="VerificacionVisitantes" EntitySet="VerificacionVisitantes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
