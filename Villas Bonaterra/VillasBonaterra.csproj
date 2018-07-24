@@ -129,6 +129,7 @@
     <Content Include="Content\images\Loading.gif" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logoMain.png" />
+    <Content Include="Content\js\Users.js" />
     <Content Include="Content\js\Visitor.js" />
     <Content Include="Content\js\Login.js" />
     <Content Include="Content\Photos\credencial.jpg" />
@@ -192,6 +193,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\StreetController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -343,6 +345,8 @@
     </None>
     <Content Include="Views\Access\Active.cshtml" />
     <Content Include="Views\Street\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

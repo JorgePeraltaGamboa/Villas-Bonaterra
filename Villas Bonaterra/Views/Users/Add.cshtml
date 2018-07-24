@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Alta de Propietario";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<title>@ViewBag.Title</title>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index", "Users")">Propietarios</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+<hr>
+<h1>@ViewBag.Title</h1>
+<form id="UsersFormAdd" name="UsersFormAdd" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="InputName">Nombre</label>
+        <input type="text" class="form-control" id="Name" aria-describedby="Name" placeholder="Escriba aqui el nombre" required>
+    </div>
+    <div class="form-group">
+        <label for="MidleName">Primer Apellido</label>
+        <input type="text" class="form-control" id="MidleName" placeholder="Escriba aqui el primer apellido" required>
+    </div>
+    <div class="form-group">
+        <label for="LastName">Segundo Apellido</label>
+        <input type="text" class="form-control" id="LastName" placeholder="Escriba aqui el segunto apellido" required>
+    </div>
+    <div class="form-group">
+        <label for="Correo">Correo electrónico</label>
+        <input type="email" class="form-control" id="Correo" placeholder="Escriba aquí el correo electrónico" required />
+    </div>
+    <div class="form-group">
+        <label for="Telefono">Teléfono</label>
+        <input type="tel" class="form-control" id="Telefono" placeholder="Escriba aquí el teléfono" required />
+    </div>
+    <div class="alert alert-danger" id="error" style="display:none;">
+        <strong id="typemessage"></strong> <span id="message"></span>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+</form>
+@section js{
+    @Scripts.Render("~/Assets/UsersAdd")
+}

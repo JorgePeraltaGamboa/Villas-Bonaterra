@@ -68,6 +68,21 @@ namespace AutenticacionPersonalizada.App_Start
                 "~/Content/vendor/datepicker/js/locales/bootstrap-datepicker.es.js",
                 "~/Content/js/Visitor.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/Assets/Users").Include(
+                "~/Content/vendor/datatables/jquery.dataTables.js",
+                "~/Content/vendor/datatables/dataTables.bootstrap4.js",
+                "~/Content/vendor/sb-admin/js/sb-admin-datatables.js",
+                "~/Content/vendor/datepicker/js/bootstrap-datepicker.min.js",
+                "~/Content/vendor/sb-admin/js/sb-admin-datatables.js",
+                "~/Content/js/Users.js"
+                ));
+            bundles.Add(new ScriptBundle("~/Assets/UsersAdd").Include(
+                "~/Content/vendor/datatables/jquery.dataTables.js",
+                "~/Content/vendor/datatables/dataTables.bootstrap4.js",
+                "~/Content/vendor/sb-admin/js/sb-admin-datatables.js",
+                "~/Content/js/Users.js"
+                ));
         }
     }
 }
