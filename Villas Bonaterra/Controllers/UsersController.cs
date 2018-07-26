@@ -21,5 +21,11 @@ namespace VillasBonaterra.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Update(Guid id)
+        {
+            var User = db.Usuario.Where(x => x.id == id).FirstOrDefault();
+            return View(User);
+        }
     }
 }

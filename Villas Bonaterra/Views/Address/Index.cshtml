@@ -1,0 +1,104 @@
+﻿@model VillasBonaterra.ViewModels.AddressUsersViewModel
+
+@{
+    ViewBag.Title = "Domicilios";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index", "Users")">Propietarios</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+<h1>@ViewBag.Title de @Model.Owner</h1>
+<div class="card mb-3">
+    <div class="card-header">
+
+        <form id="AddNewAddress" name="AddNewAddress" enctype="multipart/form-data">
+            <div class="form-group">
+                <input value=@Model.Owner_Id type="hidden" id="OwnerId" />
+                <label for="InputCalle">Selecciona la calle</label>
+                <select class="form-control" id="Street">
+                    @foreach (var item in Model.Streets)
+                    {
+                        <option value=@item.id_calle>
+                            @String.Format(item.nombre)
+                        </option>
+                    }
+                </select>
+                <label for="InputNo_Calle">Seleccione el número de calle</label>
+                <input type="text" class="form-control" id="No_Calle" aria-describedby="No_Calle" required />
+            </div>
+            <button class="btn btn-primary btn-block" type="submit" data-dismiss="modal">Agregar Domicilio</button>
+        </form>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableVisitor" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="text-center">Calle</th>
+                        <th class="text-center">No. de Casa</th>
+                        <th class="text-center">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Address)
+                    {
+                        <tr>
+                            <td>
+                                @String.Format(item.Calles.nombre)
+                            </td>
+                            <td>
+                                @String.Format(item.no_casa)
+                            </td>
+                            <td class="text-center">
+                                <div>
+                                    <button class="btn btn-danger Disassociate" data-id=@String.Format(item.no_casa)>
+                                        Desasociar este domicilio
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted"></div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Elija al nuevo propietario</h5>
+            </div>
+
+
+
+
+            <div class="modal-body">
+                @foreach (var item in Model.Owners)
+                {
+                    @String.Format(item.nombre)
+                    <br />
+                }
+                    
+            </div>
+
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section js{
+    @Scripts.Render("~/Assets/AddressAdd")
+}

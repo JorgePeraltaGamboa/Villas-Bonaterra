@@ -26,6 +26,7 @@
                         <th class="text-center">Segundo Apellido</th>
                         <th class="text-center">E-mail</th>
                         <th class="text-center">Teléfono</th>
+                        <th class="text-center">Domicilio</th>
                         <th class="text-center">Editar</th>
                     </tr>
                 </thead>
@@ -49,10 +50,17 @@
                             @String.Format(item.telefono)
                         </td>
                         <td class="text-center">
-                            <i class="fa fa-fw fa-edit"></i>
+                            <a href="@Url.Action("Index", "Address", new { id = item.id})">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </td>
+                        <td class="text-center">
                             <!--<a href="Url.Action("Update", "Visitor", new { id = item.id_visitante })" visitorid="item.id_visitante">
                                 <i class="fa fa-fw fa-edit"></i>
                             </a>-->
+                            <a href="@Url.Action("Update", "Users", new { id = @item.id })">
+                                <i class="fa fa-fw fa-edit"></i>
+                            </a>
                         </td>
                     </tr>
                     }

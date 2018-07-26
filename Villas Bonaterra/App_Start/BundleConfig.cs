@@ -83,6 +83,13 @@ namespace AutenticacionPersonalizada.App_Start
                 "~/Content/vendor/sb-admin/js/sb-admin-datatables.js",
                 "~/Content/js/Users.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/Assets/AddressAdd").Include(
+                "~/Content/vendor/datatables/jquery.dataTables.js",
+                "~/Content/vendor/datatables/dataTables.bootstrap4.js",
+                "~/Content/vendor/sb-admin/js/sb-admin-datatables.js",
+                "~/Content/js/Address.js"
+                ));            
         }
     }
 }

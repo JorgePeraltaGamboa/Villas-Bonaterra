@@ -70,6 +70,56 @@ namespace VillasBonaterra.ApiControllers
             };
         }
 
+        [Authorize]
+        [ActionName("Update")]
+        [HttpPost]
+
+        public HttpResponseMessage UpdateUser([FromBody] UserUpdateViewModel model)
+        {
+            Usuario user = db.Usuario.FirstOrDefault(s => s.id == model.Id);
+            var json = "";
+            try
+            {
+                user.nombre = model.Name;
+                user.apellido1 = model.MidleName;
+                user.apellido2 = model.LastName;
+                user.telefono = model.Telefono;
+                user.email = model.Correo;
+
+                db.SaveChanges();
+
+                json = Helper.toJson(true, "Usuario Actualizado");
+                return new HttpResponseMessage()
+                {
+                    Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json")
+                };
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        //Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",ve.PropertyName, ve.ErrorMessage);
+                        EventLog eventLog = new EventLog("Application");
+                        eventLog.Source = "BonaterraSite";
+                        eventLog.WriteEntry("- Property: " + ve.PropertyName + ", Error: " + ve.ErrorMessage, EventLogEntryType.Information, 101, 1);
+
+                    }
+
+                    json = Helper.toJson(false, "No se pudo actualizar usuario");
+
+                    return new HttpResponseMessage()
+                    {
+                        Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json")
+                    };
+                }
+                throw;
+            }
+        }
+
         [AllowAnonymous]
         [ActionName("Add")]
         [HttpPost]
